@@ -2,25 +2,143 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Opérations sur Matrices</title>
-  <link rel="stylesheet" href="index.css">
-  <h1 style="text-align: center;">Imranekhan*</h1>
-  
-  <p>NOTE DU DEVELOPEUR 
-    <li>Entre dans le premier champ la Dimension "n" de la matrice</li>
-    <li>Appuyer sur générer</li>
-    <li>remplir les champs A et B</li>
-    <li>Choisir le mode de calcul </li>
-    <li>Le résultat s'affiche automatiquement</li>
-  </p>
+  <style>
+    :root {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --primary: #1f6feb;
+      --accent: #2ea043;
+      --input-bg: #1e1e1e;
+      --border: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: monospace;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #26af48;
+    }
+
+    .note {
+      background-color: #1a1a1a;
+      border-left: 4px solid var(--accent);
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .note li {
+      margin-bottom: 5px;
+    }
+
+    .input-section {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      background-color: var(--input-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px;
+      border-radius: 5px;
+      width: 60px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #33cf56;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #26af48;
+    }
+
+    .matrices {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin: 20px 0;
+    }
+
+    .matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .matrix div {
+      display: flex;
+      gap: 6px;
+    }
+
+    input[disabled] {
+      background-color: #292929;
+      color: #ccc;
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .matrices {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .matrix div {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      input[type="number"] {
+        width: 45px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <h2>🧮 Addition et multiplication de matrices</h2>
-  
-  <label for="size">Dimension des matrices :</label>
-  <input type="number" id="size" min="1" max="10" value="2">
-  <button onclick="generateMatrices()">Générer</button>
+  <h1>Imranekhan*</h1>
+
+  <div class="note">
+    <p><strong>NOTE DU DÉVELOPPEUR :</strong></p>
+    <ul>
+      <li>Entre la dimension "n" de la matrice</li>
+      <li>Clique sur générer</li>
+      <li>Remplis les matrices A et B</li>
+      <li>Choisis l’opération</li>
+      <li>Le résultat s'affiche</li>
+    </ul>
+  </div>
+
+  <h2>🧮 Matrices : Addition & Multiplication</h2>
+
+  <div class="input-section">
+    <label for="size">Taille :</label>
+    <input type="number" id="size" min="1" max="10" value="2">
+    <button onclick="generateMatrices()">Générer</button>
+  </div>
 
   <div class="matrices">
     <div>
@@ -33,7 +151,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="input-section">
     <button onclick="calculate('add')">➕ Additionner</button>
     <button onclick="calculate('multiply')">✖️ Multiplier</button>
   </div>
