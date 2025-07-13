@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Opérations sur Matrices</title>
+  <link rel="stylesheet" href="index.css">
+  <h1 style="text-align: center;">Imranekhan*</h1>
+  
+  <p>NOTE DU DEVELOPEUR 
+    <li>Entre dans le premier champ la Dimension "n" de la matrice</li>
+    <li>Appuyer sur générer</li>
+    <li>remplir les champs A et B</li>
+    <li>Choisir le mode de calcul </li>
+    <li>Le résultat s'affiche automatiquement</li>
+  </p>
+</head>
+<body>
+
+  <h2>🧮 Addition et multiplication de matrices</h2>
+  
+  <label for="size">Dimension des matrices :</label>
+  <input type="number" id="size" min="1" max="10" value="2">
+  <button onclick="generateMatrices()">Générer</button>
+
+  <div class="matrices">
+    <div>
+      <h3>Matrice A</h3>
+      <div id="matrixA" class="matrix"></div>
+    </div>
+    <div>
+      <h3>Matrice B</h3>
+      <div id="matrixB" class="matrix"></div>
+    </div>
+  </div>
+
+  <div>
+    <button onclick="calculate('add')">➕ Additionner</button>
+    <button onclick="calculate('multiply')">✖️ Multiplier</button>
+  </div>
+
+  <div id="result">
+    <h3>Résultat (Matrice C)</h3>
+    <div id="matrixC" class="matrix"></div>
+  </div>
+
+  <script>
+    function generateMatrices() {
+      const n = parseInt(document.getElementById('size').value);
+      const matrixA = document.getElementById('matrixA');
+      const matrixB = document.getElementById('matrixB');
+      matrixA.innerHTML = '';
+      matrixB.innerHTML = '';
+      for (let i = 0; i < n; i++) {
+        const rowA = document.createElement('div');
+        const rowB = document.createElement('div');
+        for (let j = 0; j < n; j++) {
+          rowA.appendChild(createInput(`a-${i}-${j}`));
+          rowB.appendChild(createInput(`b-${i}-${j}`));
+        }
+        matrixA.appendChild(rowA);
+        matrixB.appendChild(rowB);
+      }
+      document.getElementById('matrixC').innerHTML = '';
+    }
+
+    function createInput(id) {
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.id = id;
+      input.value = 0;
+      return input;
+    }
+
+    function calculate(operation) {
+      const n = parseInt(document.getElementById('size').value);
+      let A = [], B = [], C = [];
+
+      for (let i = 0; i < n; i++) {
+        A[i] = [], B[i] = [], C[i] = [];
+        for (let j = 0; j < n; j++) {
+          A[i][j] = parseInt(document.getElementById(`a-${i}-${j}`).value) || 0;
+          B[i][j] = parseInt(document.getElementById(`b-${i}-${j}`).value) || 0;
+        }
+      }
+
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+          if (operation === 'add') {
+            C[i][j] = A[i][j] + B[i][j];
+          } else if (operation === 'multiply') {
+            C[i][j] = 0;
+            for (let k = 0; k < n; k++) {
+              C[i][j] += A[i][k] * B[k][j];
+            }
+          }
+        }
+      }
+
+      displayResult(C);
+    }
+
+    function displayResult(C) {
+      const matrixC = document.getElementById('matrixC');
+      matrixC.innerHTML = '';
+      for (let i = 0; i < C.length; i++) {
+        const row = document.createElement('div');
+        for (let j = 0; j < C.length; j++) {
+          const cell = document.createElement('input');
+          cell.type = 'number';
+          cell.value = C[i][j];
+          cell.disabled = true;
+          row.appendChild(cell);
+        }
+        matrixC.appendChild(row);
+      }
+    }
+  </script>
+
+</body>
+</html>

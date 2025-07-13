@@ -1,0 +1,39 @@
+
+body {
+    font-family: monospace;
+    padding: 20px;
+    background:#000000;
+    color:#21a93d;
+  }
+  p{
+    text-decoration: underline;
+  }
+  input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin: 2px;
+  }
+  .matrix {
+    margin: 10px 0;
+  }
+  .matrices {
+    display: flex;
+    gap: 20px;
+  }
+  button {
+    padding: 10px;
+    margin: 10px 5px;
+    background: #31d058;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  button:hover{
+    background: rgb(59, 233, 59);
+  }
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+
+  }
